@@ -7,8 +7,19 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
+/**
+ * Class which provides data stored in Data object. Thanks to specified Parser and FileProvider type, this class does not depend on type of used file.
+ */
 class DataProvider {
 
+    /**Method to fill Data object fields with proper values. Uses Parser for FileProvider, which are passed to the method.
+     * If exception in Parser or FileProvider is thrown counter is decremented, because of lack of data from that date.
+     * @param cur
+     * @param date
+     * @param parser
+     * @param fp
+     * @param data
+     */
     private static void collectRates(Currency cur, Date date, IParser parser, IFileProvider fp, Data data){
         try{
             String file = fp.getFile(date);
@@ -18,7 +29,6 @@ class DataProvider {
             int tmp = data.getCounter();
             data.setCounter(--tmp);
         }
-
     }
 
     static Data collectData(Currency cur, String start, String end, IFileProvider fp, IParser parser) throws ParseException {
@@ -26,11 +36,11 @@ class DataProvider {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = format.parse(start);
         Date endDate = format.parse(end);
-        Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
+        Calendar calStart = Calendar.getInstance();
+        Calendar calEnd = Calendar.getInstance();
         Calendar current = Calendar.getInstance();
-        cal1.setTime(startDate);
-        cal2.setTime(endDate);
+        calStart.setTime(startDate);
+        calEnd.setTime(endDate);
 
         List<Double> sellingRates = new LinkedList<>();
         List<Double> buyingRates = new LinkedList<>();
@@ -38,15 +48,15 @@ class DataProvider {
 
         Data data = new Data(sellingRates, buyingRates, counter);
 
-        if(cal1.after(current) || cal2.after(current)) throw new IllegalArgumentException("Dates cannot be from the future.");
+        if(calStart.after(current) || calEnd.after(current)) throw new IllegalArgumentException("Dates cannot be from the future.");
 
         do{
-            collectRates(cur, cal1.getTime(), parser, fp, data);
-            cal1.add(Calendar.DATE, 1);
+            collectRates(cur, calStart.getTime(), parser, fp, data);
+            calStart.add(Calendar.DATE, 1);
             int tmp = data.getCounter();
             data.setCounter(++tmp);
 
-        } while(cal1.before(cal2));
+        } while(calStart.before(calEnd));
 
         return data;
 

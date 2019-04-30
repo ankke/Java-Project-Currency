@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Class providing desired XML file in String format.
+ */
 public class XMLFileProvider implements IFileProvider {
 
     private String mode;
@@ -15,7 +18,13 @@ public class XMLFileProvider implements IFileProvider {
         this.mode = mode;
     }
 
-    private String retrieveFileName(Date date) throws FileNotFoundException, IOException {
+    /**
+     * @param date
+     * @return XML filename in String format used later for reading that file from nbp site in getFile method
+     * @throws FileNotFoundException when file does not exist for provided data in dir[year].txt
+     * @throws IOException thrown by URLReader method
+     */
+    private String extractFileName(Date date) throws FileNotFoundException, IOException {
         StringBuilder p = new StringBuilder(mode + "[0-9][0-9][0-9]z");
         SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
         p.append(format.format(date)); //yyMMdd
@@ -31,10 +40,16 @@ public class XMLFileProvider implements IFileProvider {
         Scanner fileName = new Scanner(URLReader.readDir(year1)); // w fileName znajduje się plik tekstowy dir
         String result;
         if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) return result; // wyszukiwanie w tym pliku odpowiedniej nazwy pliku
-        else throw new FileNotFoundException();
+        else throw new FileNotFoundException("tutsj");
     }
 
+    /**
+     * @param date
+     * @return XML file in String format
+     * @throws FileNotFoundException thrown by retrieveFileName
+     * @throws IOException thrown by URLReader method
+     */
     public String getFile(Date date) throws FileNotFoundException, IOException{
-        return URLReader.readXMLFile(retrieveFileName(date));
+        return URLReader.readXMLFile(extractFileName(date));
     }
 }

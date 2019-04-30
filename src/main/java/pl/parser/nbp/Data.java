@@ -1,27 +1,29 @@
 package pl.parser.nbp;
 
-import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class used for storing data: selling, buying rates.
+ */
 class Data {
 
-    private List<Double> sellingRates = new LinkedList<>();
-    private List<Double> buyingRates = new LinkedList<>();
+    private List<Double> sellingRates;
+    private List<Double> buyingRates;
     private int counter;
 
-    public List<Double> getSellingRates() {
+    List<Double> getSellingRates() {
         return sellingRates;
     }
 
-    public void setCounter(int counter) {
+    void setCounter(int counter) {
         this.counter = counter;
     }
 
-    public int getCounter() {
+    int getCounter() {
         return counter;
     }
 
-    public List<Double> getBuyingRates() {
+    List<Double> getBuyingRates() {
         return buyingRates;
     }
 
