@@ -2,13 +2,15 @@ package pl.parser.nbp;
 
 import java.text.ParseException;
 
+/**
+ * Class to execute desired methods. If necessary can by extended by adding different FileProviders e.g. for JSON with corresponding Parsers.
+ */
 class Executor {
 
-    /**Class to execute desired methods. If necessary can by extended by adding different FileProviders e.g. for JSON with corresponding Parsers.
-     * @param cur currency abbreviation
+    /**@param cur currency abbreviation
      * @param start start date
      * @param end end date
-     * @throws IllegalArgumentException when cur name is invalid or dates are from future
+     * @throws IllegalArgumentException when cur name or dates are invalid
      * @throws ParseException when date format is incompatible with yyyy-MM-dd
      */
     static void execute(String cur, String start, String end) throws IllegalArgumentException, ParseException{

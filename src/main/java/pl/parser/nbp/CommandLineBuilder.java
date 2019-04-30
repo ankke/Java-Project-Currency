@@ -15,8 +15,9 @@ class CommandLineBuilder {
      */
     CommandLineBuilder(){
         Option optionh = Option.builder("h").required(false).desc("Show help.").build();
-        Option option1 = Option.builder("").required(false).hasArgs().desc("Choose first argument: currency from USD, EUR, CHF, GBP and then second and third: " +
-                "specify starting and ending date in format yyyy-MM-dd to calculate mean of sales rate and standard deviation of buying rate.").build();
+        Option option1 = Option.builder("").required(false).hasArgs().desc("Choose first argument: currency from USD, EUR, CHF, GBP " +
+                "and then second and third: specify starting and ending date in format yyyy-MM-dd to calculate mean " +
+                "of sales rate and standard deviation of buying rate.").build();
         options.addOption(option1);
         options.addOption(optionh);
     }
@@ -51,7 +52,7 @@ class CommandLineBuilder {
     }
 
 
-    /**Method used for invoking help or executing the main program.
+    /**Method used for invoking help or executing the program.
      * @param args commandline arguments
      * @throws java.text.ParseException when parsing commandline arguments is unsuccessful
      */

@@ -12,6 +12,9 @@ import java.util.regex.Pattern;
  */
 public class XMLFileProvider implements IFileProvider {
 
+    /**
+     * mode =[a,b,c,h]
+     */
     private String mode;
 
     XMLFileProvider(String mode){
@@ -19,7 +22,7 @@ public class XMLFileProvider implements IFileProvider {
     }
 
     /**
-     * @param date
+     * @param date date
      * @return XML filename in String format
      * @throws FileNotFoundException when file does not exist for provided data in dir[year].txt
      * @throws IOException thrown by URLReader method
@@ -28,23 +31,24 @@ public class XMLFileProvider implements IFileProvider {
         StringBuilder p = new StringBuilder(mode + "[0-9][0-9][0-9]z");
         SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
         p.append(format.format(date));
-        Pattern pattern = Pattern.compile(p.toString()); // pattern określajacy format nazwy pliku xml
+        Pattern pattern = Pattern.compile(p.toString());
 
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         cal1.setTime(date);
         int year = cal1.get(Calendar.YEAR);
         String year1 = "";
+        // if year is a current year then txt file is dir.txt, so year1 should stay empty
         if( year != cal2.get(Calendar.YEAR)) year1 = Integer.toString(year);
 
-        Scanner fileName = new Scanner(URLReader.readDir(year1)); // w fileName znajduje się plik tekstowy dir
+        Scanner fileName = new Scanner(URLReader.readDir(year1));
         String result;
-        if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) return result; // wyszukiwanie w tym pliku odpowiedniej nazwy pliku
+        if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) return result;
         else throw new FileNotFoundException();
     }
 
     /**
-     * @param date
+     * @param date date
      * @return XML file in String format
      * @throws FileNotFoundException thrown by extractFileName
      * @throws IOException thrown by URLReader method

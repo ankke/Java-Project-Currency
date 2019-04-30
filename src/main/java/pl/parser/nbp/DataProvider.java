@@ -6,12 +6,12 @@ import java.util.*;
 import java.util.Date;
 
 /**
- * Class which provides data stored in Data object. Thanks to specified Parser and FileProvider type, this class does not depend on type of used file.
+ * Class used to provide data stored in Data object. Thanks to specified Parser and FileProvider type, this class does not depend on type of used file.
  */
 class DataProvider {
 
     /**Method used to fill Data object fields with proper values. Uses Parser for FileProvider, which are passed to the method.
-     * If exception in Parser or FileProvider is thrown data.counter is decremented, because of lack of data from that date.
+     * If exception in Parser or FileProvider is thrown data.counter is decremented, because of lack of data from that day.
      * @param cur Enum currency
      * @param date date of file
      * @param parser proper parser
@@ -30,15 +30,16 @@ class DataProvider {
     }
 
     /**
-     * @param cur
-     * @param start
-     * @param end
-     * @param fp
-     * @param parser
-     * @return
-     * @throws ParseException
+     * @param cur Enum currency
+     * @param start start date
+     * @param end end date
+     * @param fp FileProvider type
+     * @param parser Parser type
+     * @return filled Data instance
+     * @throws ParseException when date format is incompatible with yyyy-MM-dd
+     * @throws IllegalArgumentException when date is from future or date is invalid e.g. month number is 30
      */
-    static Data collectData(Currency cur, String start, String end, IFileProvider fp, IParser parser) throws ParseException {
+    static Data collectData(Currency cur, String start, String end, IFileProvider fp, IParser parser) throws ParseException, IllegalArgumentException{
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = format.parse(start);

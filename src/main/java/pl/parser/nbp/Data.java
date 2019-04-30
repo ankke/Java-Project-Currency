@@ -3,7 +3,7 @@ package pl.parser.nbp;
 import java.util.List;
 
 /**
- * Class used for storing data: selling, buying rates.
+ * Class used for storing data: selling and buying rates.
  */
 class Data {
 
@@ -41,11 +41,6 @@ class Data {
         buyingRates.add(rate);
     }
 
-    /**
-     * @param sellingRates List of selling rates values
-     * @param buyingRates List of buying rates values
-     * @param counter number of stored values
-     */
     Data(List<Double> sellingRates, List<Double> buyingRates, int counter){
         this.sellingRates = sellingRates;
         this.buyingRates = buyingRates;

@@ -1,7 +1,7 @@
 package pl.parser.nbp;
 
 /**
- * Enum from used currencies.
+ * Enum for used currencies.
  */
 public enum Currency {
     USD ("dolar amerykański"),

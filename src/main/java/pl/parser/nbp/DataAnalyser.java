@@ -47,7 +47,7 @@ class DataAnalyser{
         if(data.getCounter() > 0) stDeviation = Math.sqrt((squareSum)/(data.getCounter()));
         else{
             stDeviation = -1;
-            throw new TooLittleDataException("Too little data to calculate standard deviation.");
+            throw new TooLittleDataException("Too little data to calculate standard deviation."); //thrown to avoid dividing by 0
         }
     }
 
