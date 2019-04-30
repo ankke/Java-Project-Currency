@@ -1,5 +1,8 @@
 package pl.parser.nbp;
 
+/**
+ * Class used for calculating mean and standard deviation.
+ */
 class DataAnalyser{
 
     private double mean;
@@ -12,7 +15,7 @@ class DataAnalyser{
         try{
             sellingRateStandardDeviation();
         }catch(TooLittleDataException e){
-            System.out.println("Dates are equal or some file does not exist.");
+            System.out.println("Some files might not exist.");
             System.out.println(e.getMessage());
         }
     }
@@ -31,6 +34,9 @@ class DataAnalyser{
         mean = sum/data.getCounter();
     }
 
+    /**
+     * @throws TooLittleDataException if number of samples is zero (because e.g. xml file from provided date does not exist)
+     */
     private void sellingRateStandardDeviation() throws TooLittleDataException{
         double sum = 0.0;
         for(double rate : data.getSellingRates()) sum += rate;
@@ -38,7 +44,7 @@ class DataAnalyser{
         double squareSum = 0.0;
         for(double rate : data.getSellingRates())
             squareSum += Math.pow((rate - mean), 2);
-        if(data.getCounter() > 1) stDeviation = Math.sqrt((squareSum)/(data.getCounter()));
+        if(data.getCounter() > 0) stDeviation = Math.sqrt((squareSum)/(data.getCounter()));
         else{
             stDeviation = -1;
             throw new TooLittleDataException("Too little data to calculate standard deviation.");
