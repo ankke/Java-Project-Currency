@@ -9,23 +9,20 @@ import java.util.Date;
 
 class DataProvider {
 
-    static List<Double> sellingRates = new LinkedList<>();
-    static List<Double> buyingRates = new LinkedList<>();
-    static int counter;
-
-    private static void collectRates(Currency cur, Date date, Parser parser, FileProvider fp){
+    private static void collectRates(Currency cur, Date date, IParser parser, IFileProvider fp, Data data){
         try{
             String file = fp.getFile(date);
-            sellingRates.add(parser.getValue(cur, file, "kurs_sprzedazy"));
-            buyingRates.add(parser.getValue(cur, file, "kurs_kupna"));
+            data.addToSellingRates(parser.getValue(cur, file, "kurs_sprzedazy"));
+            data.addToBuyingRates(parser.getValue(cur, file, "kurs_kupna"));
         }catch (XPathExpressionException | FileNotFoundException | IOException e){
-            counter--;
+            int tmp = data.getCounter();
+            data.setCounter(--tmp);
             System.out.println(e.getMessage());
         }
 
     }
 
-    static void collectData(Currency cur, String start, String end, FileProvider fp, Parser parser) throws ParseException {
+    static Data collectData(Currency cur, String start, String end, IFileProvider fp, IParser parser) throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = format.parse(start);
@@ -36,14 +33,24 @@ class DataProvider {
         cal1.setTime(startDate);
         cal2.setTime(endDate);
 
+        List<Double> sellingRates = new LinkedList<>();
+        List<Double> buyingRates = new LinkedList<>();
+        int counter = 0;
+
+        Data data = new Data(sellingRates, buyingRates, counter);
+
         if(cal1.after(current) || cal2.after(current)) throw new IllegalArgumentException("Dates cannot be from the future.");
 
         do{
-            collectRates(cur, cal1.getTime(), parser, fp);
+            collectRates(cur, cal1.getTime(), parser, fp, data);
             cal1.add(Calendar.DATE, 1);
-            counter++;
+            int tmp = data.getCounter();
+            data.setCounter(++tmp);
 
         } while(cal1.before(cal2));
+
+        return data;
+
     }
 
 }

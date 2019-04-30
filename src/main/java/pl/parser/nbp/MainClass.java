@@ -8,7 +8,7 @@ public class MainClass {
 
         try{
             CommandLineBuilder cmd = new CommandLineBuilder();
-            cmd.runParser(args);
+            cmd.run(args);
         }catch(IllegalArgumentException e){
             System.out.println("Invalid currency. Choose from USD, EUR, CHF, GBP. Try -h for help.");
             e.printStackTrace();

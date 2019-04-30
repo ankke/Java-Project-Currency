@@ -38,7 +38,7 @@ class CommandLineBuilder {
     }
 
 
-    void runParser(String[] args) throws java.text.ParseException {
+    void run(String[] args) throws java.text.ParseException {
         if (args.length < 3) {
             System.out.println("Too few arguments.");
             generateHelp();
@@ -50,8 +50,7 @@ class CommandLineBuilder {
             generateHelp();
         }
 
+
         Executor.execute(args[0], args[1], args[2]);
     }
-
-
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class XMLFileProvider implements FileProvider {
+public class XMLFileProvider implements IFileProvider {
     private String mode;
 
     XMLFileProvider(String mode){

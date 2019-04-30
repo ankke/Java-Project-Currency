@@ -4,7 +4,7 @@ import org.xml.sax.InputSource;
 import javax.xml.xpath.*;
 import java.io.*;
 
-public class XMLParser implements Parser{
+public class XMLParser implements IParser {
 
     public Double getValue(Currency cur, String XMLFile, String tagName) throws XPathExpressionException{
 
