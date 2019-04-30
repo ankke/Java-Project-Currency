@@ -12,20 +12,20 @@ import java.util.Date;
  */
 class DataProvider {
 
-    /**Method to fill Data object fields with proper values. Uses Parser for FileProvider, which are passed to the method.
-     * If exception in Parser or FileProvider is thrown counter is decremented, because of lack of data from that date.
-     * @param cur
-     * @param date
-     * @param parser
-     * @param fp
-     * @param data
+    /**Method used to fill Data object fields with proper values. Uses Parser for FileProvider, which are passed to the method.
+     * If exception in Parser or FileProvider is thrown data.counter is decremented, because of lack of data from that date.
+     * @param cur Enum currency
+     * @param date date of file
+     * @param parser proper parser
+     * @param fp proper file
+     * @param data Data instance to store extracted from file values
      */
     private static void collectRates(Currency cur, Date date, IParser parser, IFileProvider fp, Data data){
         try{
             String file = fp.getFile(date);
             data.addToSellingRates(parser.getValue(cur, file, "kurs_sprzedazy"));
             data.addToBuyingRates(parser.getValue(cur, file, "kurs_kupna"));
-        }catch (XPathExpressionException | FileNotFoundException | IOException e){
+        }catch (Exception e){
             int tmp = data.getCounter();
             data.setCounter(--tmp);
         }

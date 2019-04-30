@@ -20,14 +20,14 @@ public class XMLFileProvider implements IFileProvider {
 
     /**
      * @param date
-     * @return XML filename in String format used later for reading that file from nbp site in getFile method
+     * @return XML filename in String format
      * @throws FileNotFoundException when file does not exist for provided data in dir[year].txt
      * @throws IOException thrown by URLReader method
      */
     private String extractFileName(Date date) throws FileNotFoundException, IOException {
         StringBuilder p = new StringBuilder(mode + "[0-9][0-9][0-9]z");
         SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
-        p.append(format.format(date)); //yyMMdd
+        p.append(format.format(date));
         Pattern pattern = Pattern.compile(p.toString()); // pattern określajacy format nazwy pliku xml
 
         Calendar cal1 = Calendar.getInstance();

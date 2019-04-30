@@ -27,10 +27,16 @@ class Data {
         return buyingRates;
     }
 
+    /**Adds rate to the selling rates list
+     * @param rate rate value
+     */
     void addToSellingRates(Double rate){
         sellingRates.add(rate);
     }
 
+    /**Adds rate to the buying rates list
+     * @param rate rate value
+     */
     void addToBuyingRates(Double rate){
         buyingRates.add(rate);
     }

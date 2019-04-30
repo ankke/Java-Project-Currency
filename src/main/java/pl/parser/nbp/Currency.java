@@ -11,16 +11,10 @@ public enum Currency {
 
     private final String fullName;
 
-    /**
-     * @param fullName full name of currency
-     */
     Currency(String fullName){
         this.fullName = fullName;
     }
 
-    /**
-     * @return full name of currency
-     */
     public String getFullName() {
         return fullName;
     }

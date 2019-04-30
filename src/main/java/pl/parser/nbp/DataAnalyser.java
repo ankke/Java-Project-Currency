@@ -12,7 +12,7 @@ class DataAnalyser{
         try{
             sellingRateStandardDeviation();
         }catch(TooLittleDataException e){
-            System.out.println("Dates cannot be equal or some file does not exist.");
+            System.out.println("Dates are equal or some file does not exist.");
             System.out.println(e.getMessage());
         }
     }
