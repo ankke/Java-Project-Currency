@@ -41,9 +41,15 @@ class URLReader {
         BufferedReader in = new BufferedReader(new InputStreamReader(files.openStream()));
         StringBuilder s = new StringBuilder();
         String inputLine;
+        String UTF8_BOM = "\uFEFF";
 
-        while ((inputLine = in.readLine()) != null)
-            s.append(inputLine);
+        while ((inputLine = in.readLine()) != null) //some files have BOM at the begging, which has to be deleted
+            if (inputLine.startsWith(UTF8_BOM)) {
+                inputLine = inputLine.substring(1);
+                s.append(inputLine);
+            }
+            else s.append(inputLine);
+
 
         in.close();
         return s.toString();

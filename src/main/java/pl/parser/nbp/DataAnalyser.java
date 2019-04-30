@@ -36,9 +36,9 @@ class DataAnalyser{
         for(double rate : data.getSellingRates()) sum += rate;
         double mean = sum/data.getCounter();
         double squareSum = 0.0;
-        for(double rate : data.getBuyingRates())
+        for(double rate : data.getSellingRates())
             squareSum += Math.pow((rate - mean), 2);
-        if(data.getCounter() > 1) stDeviation = Math.sqrt((squareSum)/(data.getCounter() -1));
+        if(data.getCounter() > 1) stDeviation = Math.sqrt((squareSum)/(data.getCounter()));
         else{
             stDeviation = -1;
             throw new TooLittleDataException("Too little data to calculate standard deviation.");

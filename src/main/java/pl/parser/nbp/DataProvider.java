@@ -1,7 +1,5 @@
 package pl.parser.nbp;
 
-import javax.xml.xpath.XPathExpressionException;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -59,13 +57,12 @@ class DataProvider {
 
         if(calStart.after(current) || calEnd.after(current)) throw new IllegalArgumentException("Dates cannot be from the future.");
 
-        do{
+        while(calStart.before(calEnd) || calStart.equals(calEnd)){
             collectRates(cur, calStart.getTime(), parser, fp, data);
             calStart.add(Calendar.DATE, 1);
             int tmp = data.getCounter();
             data.setCounter(++tmp);
-
-        } while(calStart.before(calEnd));
+        }
 
         return data;
 

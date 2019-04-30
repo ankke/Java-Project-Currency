@@ -3,6 +3,7 @@ package pl.parser.nbp;
 import org.xml.sax.InputSource;
 import javax.xml.xpath.*;
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * Class used for extracting values from XMLFile with XPath.
@@ -15,7 +16,7 @@ public class XMLParser implements IParser {
      * @param file String form of file
      * @param tagName kurs_sprzedazy lub kurs_kupna
      * @return Double value of specified in tagName rate
-     * @throws XPathExpressionException when searching for value in XMLFile is not successful (XPath cannot evaluate searching expression).
+     * @throws Exception when searching for value in XMLFile is not successful (XPath cannot evaluate searching expression).
      */
     public Double getValue(Currency cur, String file, String tagName) throws Exception{
 
