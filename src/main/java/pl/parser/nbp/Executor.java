@@ -6,7 +6,6 @@ import java.text.ParseException;
  * Class to execute desired methods. If necessary can by extended by adding different FileProviders e.g. for JSON with corresponding Parsers.
  */
 class Executor {
-
     /**@param cur currency abbreviation
      * @param start start date
      * @param end end date

@@ -56,18 +56,17 @@ class URLReader {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
         StringBuilder s = new StringBuilder();
-        String inputLine;
+        String inputLine = in.readLine();
 
+        if (inputLine.startsWith("\uFEFF")) { //some files have BOM at the begging, which has to be deleted
+            inputLine = inputLine.substring(1);
+            s.append(inputLine);
+        }
         while ((inputLine = in.readLine()) != null) {
-            if (inputLine.startsWith("\uFEFF")) { //some files have BOM at the begging, which has to be deleted
-                inputLine = inputLine.substring(1);
-            }
             s.append(inputLine);
         }
 
         in.close();
         return s.toString();
     }
-
-
 }
