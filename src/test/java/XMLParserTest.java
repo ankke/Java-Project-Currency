@@ -1,8 +1,6 @@
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import pl.parser.nbp.*;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class XMLParserTest {
 
@@ -19,12 +17,6 @@ public class XMLParserTest {
             "<kurs_sprzedazy>4,2370</kurs_sprzedazy>" +
             "</pozycja>" +
             "</tabela_kursow>";
-    @Before
-    public void setFile(){
-        if(file.startsWith("\uFEFF")){
-            file = file.substring(1);
-        }
-    }
 
     @Test (expected = Exception.class)
     public void shouldThrowException_WrongTag() throws Exception{

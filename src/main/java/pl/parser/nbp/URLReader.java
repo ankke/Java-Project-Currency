@@ -66,7 +66,6 @@ class URLReader {
         }
 
         in.close();
-        System.out.println(s.toString());
         return s.toString();
     }
 
