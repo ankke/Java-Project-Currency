@@ -1,6 +1,6 @@
 package pl.parser.nbp;
 
-class DataAnalyser extends DataProvider{
+class DataAnalyser{
 
     private double mean;
     private double stDeviation;
@@ -12,8 +12,12 @@ class DataAnalyser extends DataProvider{
         sellingRateStandardDeviation();
     }
 
-    String toSting(){
-        return mean + "\n" + stDeviation + "\n";
+    double getStDeviation() {
+        return stDeviation;
+    }
+
+    double getMean() {
+        return mean;
     }
 
     private void buyingRateMean(){

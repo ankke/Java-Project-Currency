@@ -10,7 +10,8 @@ class Executor {
         IParser parser = new XMLParser(); // oraz innego parsera w zależności od formatu
         Data data = DataProvider.collectData(Currency.valueOf(cur), start, stop, fileProvider, parser);
         DataAnalyser dataAnalyser = new DataAnalyser(data);
-        System.out.println(dataAnalyser.toSting());
+        System.out.printf("%.4f \n", dataAnalyser.getMean());
+        System.out.printf("%.4f", dataAnalyser.getStDeviation());
     }
 
 }
