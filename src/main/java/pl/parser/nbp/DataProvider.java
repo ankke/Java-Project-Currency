@@ -7,13 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-public class DataProvider {
+class DataProvider {
 
-    protected static List<Double> sellingRates = new LinkedList<>();
-    protected static List<Double> buyingRates = new LinkedList<>();
-    protected static int counter;
+    static List<Double> sellingRates = new LinkedList<>();
+    static List<Double> buyingRates = new LinkedList<>();
+    static int counter;
 
-    public static void collectRates(Currency cur, Date date, Parser parser, FileProvider fp){
+    private static void collectRates(Currency cur, Date date, Parser parser, FileProvider fp){
         try{
             String file = fp.getFile(date);
             sellingRates.add(parser.getValue(cur, file, "kurs_sprzedazy"));
@@ -25,7 +25,7 @@ public class DataProvider {
 
     }
 
-    public static void collectData(Currency cur, String start, String end, FileProvider fp, Parser parser) throws ParseException {
+    static void collectData(Currency cur, String start, String end, FileProvider fp, Parser parser) throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = format.parse(start);

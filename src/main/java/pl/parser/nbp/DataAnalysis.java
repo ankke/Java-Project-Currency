@@ -1,14 +1,14 @@
 package pl.parser.nbp;
 
-public class DataAnalysis extends DataProvider{
+class DataAnalysis extends DataProvider{
 
-    public static double buyingRateMean(){
+    static double buyingRateMean(){
         double sum = 0.0;
         for(double rate : buyingRates) sum += rate;
         return sum/counter;
     }
 
-    public static double sellingRateStandardDeviation(){
+    static double sellingRateStandardDeviation(){
         double sum = 0.0;
         for(double rate : sellingRates) sum += rate;
         double mean = sum/counter;

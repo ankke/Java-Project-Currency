@@ -3,13 +3,14 @@ package pl.parser.nbp;
 import org.apache.commons.cli.*;
 import java.util.Arrays;
 
-public class CommandLineBuilder {
+class CommandLineBuilder {
 
     private static final Options options = new Options();
-    private final Option optionh = Option.builder("h").required(false).desc("Show help").build();
-    private final Option option1 = Option.builder("").required(false).hasArgs().desc("Choose currency from USD, EUR, CHF, GBP and specify starting" +
-            "and ending date in format yyyy-MM-dd to calculate mean of sales rate and standard deviation of buying rate.").build();
-    public CommandLineBuilder(){
+
+    CommandLineBuilder(){
+        Option optionh = Option.builder("h").required(false).desc("Show help").build();
+        Option option1 = Option.builder("").required(false).hasArgs().desc("Choose currency from USD, EUR, CHF, GBP and specify starting" +
+                "and ending date in format yyyy-MM-dd to calculate mean of sales rate and standard deviation of buying rate.").build();
         options.addOption(option1);
         options.addOption(optionh);
     }
@@ -37,7 +38,7 @@ public class CommandLineBuilder {
     }
 
 
-    public void runParser(String[] args) throws java.text.ParseException {
+    void runParser(String[] args) throws java.text.ParseException {
         if (args.length < 3) {
             System.out.println("Too few arguments.");
             generateHelp();

@@ -5,11 +5,11 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class URLReader {
+class URLReader {
 
     private static Map<String, String> dirFiles = new HashMap<>(); // cashowanie pliku dir wg lat
 
-    public static String readDir(String year) throws IOException {
+    static String readDir(String year) throws IOException {
         String result;
 
         if((result = dirFiles.get(year)) == null) {
@@ -32,7 +32,7 @@ public class URLReader {
         else return result;
     }
 
-    public static String readXMLFile(String fileName) throws IOException {
+    static String readXMLFile(String fileName) throws IOException {
         StringBuilder path = new StringBuilder("http://www.nbp.pl/kursy/xml/");
         if(fileName != null) path.append(fileName.trim());
         path.append(".xml");

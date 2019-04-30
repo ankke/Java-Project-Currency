@@ -1,6 +1,5 @@
 package pl.parser.nbp;
 
-
 import org.xml.sax.InputSource;
 import javax.xml.xpath.*;
 import java.io.*;

@@ -1,7 +1,7 @@
 package pl.parser.nbp;
 
-public class FileNotFoundException extends Exception {
-    public FileNotFoundException(String message){
+class FileNotFoundException extends Exception {
+    FileNotFoundException(String message){
         super(message);
     }
 

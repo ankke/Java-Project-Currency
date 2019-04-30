@@ -1,6 +1,5 @@
 package pl.parser.nbp;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,11 +10,11 @@ import java.util.regex.Pattern;
 public class XMLFileProvider implements FileProvider {
     private String mode;
 
-    public XMLFileProvider(String mode){
+    XMLFileProvider(String mode){
         this.mode = mode;
     }
 
-    public String retrieveFileName(Date date) throws FileNotFoundException, IOException {
+    private String retrieveFileName(Date date) throws FileNotFoundException, IOException {
         StringBuilder p = new StringBuilder(mode + "[0-9][0-9][0-9]z");
         SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
         p.append(format.format(date)); //yyMMdd
