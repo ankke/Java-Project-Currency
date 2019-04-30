@@ -10,7 +10,7 @@ public class MainClass {
             CommandLineBuilder cmd = new CommandLineBuilder();
             cmd.run(args);
         }catch(IllegalArgumentException e){
-            System.out.println("Invalid currency. Choose from USD, EUR, CHF, GBP. Try -h for help.");
+            System.out.println("Try -h for help.");
             e.printStackTrace();
         }catch (ParseException e){
             System.out.println("Wrong date format. Should be yyyy-MM-dd. Try -h for help.");

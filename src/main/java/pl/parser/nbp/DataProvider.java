@@ -17,7 +17,6 @@ class DataProvider {
         }catch (XPathExpressionException | FileNotFoundException | IOException e){
             int tmp = data.getCounter();
             data.setCounter(--tmp);
-            System.out.println(e.getMessage());
         }
 
     }

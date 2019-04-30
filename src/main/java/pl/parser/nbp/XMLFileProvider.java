@@ -31,7 +31,7 @@ public class XMLFileProvider implements IFileProvider {
         Scanner fileName = new Scanner(URLReader.readDir(year1)); // w fileName znajduje się plik tekstowy dir
         String result;
         if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) return result; // wyszukiwanie w tym pliku odpowiedniej nazwy pliku
-        else throw new FileNotFoundException("No filename found for: " + format.format(date));
+        else throw new FileNotFoundException();
     }
 
     public String getFile(Date date) throws FileNotFoundException, IOException{
