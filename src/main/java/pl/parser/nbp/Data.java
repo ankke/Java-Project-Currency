@@ -35,11 +35,15 @@ class Data {
         buyingRates.add(rate);
     }
 
+    /**
+     * @param sellingRates List of selling rates values
+     * @param buyingRates List of buying rates values
+     * @param counter number of stored values
+     */
     Data(List<Double> sellingRates, List<Double> buyingRates, int counter){
         this.sellingRates = sellingRates;
         this.buyingRates = buyingRates;
         this.counter = counter;
-
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
- * Class providing desired XML file in String format.
+ * Class used for providing desired XML file in String format.
  */
 public class XMLFileProvider implements IFileProvider {
 
@@ -40,13 +40,13 @@ public class XMLFileProvider implements IFileProvider {
         Scanner fileName = new Scanner(URLReader.readDir(year1)); // w fileName znajduje się plik tekstowy dir
         String result;
         if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) return result; // wyszukiwanie w tym pliku odpowiedniej nazwy pliku
-        else throw new FileNotFoundException("tutsj");
+        else throw new FileNotFoundException();
     }
 
     /**
      * @param date
      * @return XML file in String format
-     * @throws FileNotFoundException thrown by retrieveFileName
+     * @throws FileNotFoundException thrown by extractFileName
      * @throws IOException thrown by URLReader method
      */
     public String getFile(Date date) throws FileNotFoundException, IOException{

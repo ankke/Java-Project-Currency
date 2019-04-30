@@ -31,6 +31,15 @@ class DataProvider {
         }
     }
 
+    /**
+     * @param cur
+     * @param start
+     * @param end
+     * @param fp
+     * @param parser
+     * @return
+     * @throws ParseException
+     */
     static Data collectData(Currency cur, String start, String end, IFileProvider fp, IParser parser) throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

@@ -3,10 +3,16 @@ package pl.parser.nbp;
 import org.apache.commons.cli.*;
 import java.util.Arrays;
 
+/**
+ * Class used for parsing commandline arguments.
+ */
 class CommandLineBuilder {
 
     private static final Options options = new Options();
 
+    /**
+     * Initialises Options for commandline.
+     */
     CommandLineBuilder(){
         Option optionh = Option.builder("h").required(false).desc("Show help.").build();
         Option option1 = Option.builder("").required(false).hasArgs().desc("Choose first argument: currency from USD, EUR, CHF, GBP and then second and third: " +
@@ -15,6 +21,10 @@ class CommandLineBuilder {
         options.addOption(optionh);
     }
 
+    /**Generates CommandLine instance or communicates failure with parsing commandline arguments.
+     * @param args commandline arguments
+     * @return CommandLine instance.
+     */
     private static CommandLine generateCommandLine(String[] args){
         final CommandLineParser lineParser = new DefaultParser();
         CommandLine commandLine = null;
@@ -30,6 +40,9 @@ class CommandLineBuilder {
         return commandLine;
     }
 
+    /**
+     *Generates help.
+     */
     private static void generateHelp(){
         String header = "CURRENCY SALE'S RATES PROVIDER";
         String footer = "By Anna Banaszak";
@@ -38,6 +51,10 @@ class CommandLineBuilder {
     }
 
 
+    /**Method used for invoking help or executing the main program.
+     * @param args commandline arguments
+     * @throws java.text.ParseException when parsing commandline arguments is unsuccessful
+     */
     void run(String[] args) throws java.text.ParseException {
 
         CommandLine commandLine = generateCommandLine(args);
