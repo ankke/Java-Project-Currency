@@ -10,7 +10,8 @@ public class XMLParser implements IParser {
 
         InputSource inputXML = new InputSource( new StringReader( XMLFile));
         XPath xPath = XPathFactory.newInstance().newXPath();
-        String result =(String) xPath.evaluate("tabela_kursow/pozycja[nazwa_waluty = '" + cur.getFullName()+"' ]/" + tagName , inputXML, XPathConstants.STRING);
+        String result =
+                (String) xPath.evaluate("tabela_kursow/pozycja[nazwa_waluty = '" + cur.getFullName()+"' ]/" + tagName , inputXML, XPathConstants.STRING);
         result = result.replaceAll(",", ".");
 
         return Double.parseDouble(result);

@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class XMLFileProvider implements IFileProvider {
+
     private String mode;
 
     XMLFileProvider(String mode){
@@ -29,10 +30,7 @@ public class XMLFileProvider implements IFileProvider {
 
         Scanner fileName = new Scanner(URLReader.readDir(year1)); // w fileName znajduje się plik tekstowy dir
         String result;
-        if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) {
-            //System.out.println(result);
-            return result; // wyszukiwanie w tym pliku odpowiedniej nazwy pliku
-        }
+        if((result = fileName.findWithinHorizon(pattern, 0) )!= null ) return result; // wyszukiwanie w tym pliku odpowiedniej nazwy pliku
         else throw new FileNotFoundException("No filename found for: " + format.format(date));
     }
 

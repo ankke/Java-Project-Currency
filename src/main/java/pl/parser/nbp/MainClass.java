@@ -14,7 +14,7 @@ public class MainClass {
             e.printStackTrace();
         }catch (ParseException e){
             System.out.println("Wrong date format. Should be yyyy-MM-dd. Try -h for help.");
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 
